@@ -70,6 +70,7 @@ public School getSchool()
 public void setIndex()
 {
 	//setIndex decide what to put
+	System.Out.println
 }
 public ArrayList<Index> getIndex()
 {
