@@ -70,7 +70,6 @@ public School getSchool()
 public void setIndex()
 {
 	//setIndex decide what to put
-	System.out
 }
 public ArrayList<Index> getIndex()
 {
