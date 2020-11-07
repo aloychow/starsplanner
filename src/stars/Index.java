@@ -8,6 +8,10 @@ public class Index {
     private Queue<Student> waitList;
     private ArrayList<RegisteredCourse> regList;
     private ArrayList<StudyGroup> studyGroup;//need to add methods for studyGroup, index is a composition of it
+    public Index()
+    {
+
+    }
     public Index(int indexNum, String groupNum, int vacancies, Course course)
     {	this.course=course;
         this.indexNum=indexNum;

@@ -7,7 +7,10 @@ public class StudyGroup {
     private int dayOfWeek;
     private String weekType;
     private Index index;
+    public StudyGroup()
+    {
 
+    }
     public StudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType, Index index) {
         this.venue = venue;
         this.startTime = startTime;

@@ -8,7 +8,10 @@ public class Course {
     private String courseType;
     private int vacancy;
     private int totalAUs;
+    public Course()
+    {
 
+    }
     public Course(String name, String courseCode, School school, String courseType,int vacancy, int totalAUs)
     {	//need to do object creation for ArrayList index here maybe
         //if school is a composition of course, can we add a school object inside course?

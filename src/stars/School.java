@@ -6,7 +6,9 @@ public class School {
     private String name;
     private Date registrationStartPeriod = new Date();
     private Date registrationEndPeriod = new Date();
-
+    public School()
+    {
+    }
     public School(String name, Date registrationStartPeriod, Date registrationEndPeriod) {
         this.name = name;
         this.registrationStartPeriod = registrationStartPeriod;
