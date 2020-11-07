@@ -2,35 +2,24 @@ package stars;
 
 public class Admin extends User {
     private String adminID;
+    public Admin()
+    {
+        super();
+    }
 
-    public Admin(String email, String password, String typeOfUser, String adminID) {
-        super(email, password, typeOfUser);
+    public Admin(String email, String password, String typeOfUser, String userName, String adminID) {
+        super(email, password, typeOfUser, userName);
         this.adminID = adminID;
     }
 
-    public void editStudentAccessPeriod() {
-        return;
+    public String getAdminID() {
+        return adminID;
     }
 
-    public void addStudent() {
-        return;
+    public void setAdminID(String adminID) {
+        this.adminID = adminID;
     }
 
-    public void addCourse() {
-        return;
-    }
-
-    public void checkAvailableSlot() {
-        return;
-    }
-
-    public void printStuListByIndex() {
-        return;
-    }
-
-    public void printStuListByCourse() {
-        return;
-    }
 }
 
 // we never pass in type of user as constructor for User in class diagram

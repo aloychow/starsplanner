@@ -2,7 +2,7 @@ package stars;
 import java.util.*;
 import java.util.ArrayList;
 
-public class Student {
+public class Student extends User{
     private String   name;
     private String   matricNumber;
     private String   gender;
@@ -12,9 +12,14 @@ public class Student {
     private ArrayList<RegisteredCourse> regCourses;
     private School school;
     public static final  int MAX_AUs = 22;
+    public Student()
+    {
+        super();
+    }
 
     public Student(String name, String matricNumber, String gender, String nationality, int year, int numberOFAUs,
-                   ArrayList<RegisteredCourse> regCourses, School school) {
+                   ArrayList<RegisteredCourse> regCourses, School school, String email, String password, String typeOfUser,  String userName) {
+        super(email, password, typeOfUser, userName);
         this.name = name;
         this.matricNumber = matricNumber;
         this.gender = gender;
@@ -23,6 +28,7 @@ public class Student {
         this.numberOFAUs = numberOFAUs;
         this.regCourses = regCourses;
         this.school = school;
+
     }
 
     public String getName() {
