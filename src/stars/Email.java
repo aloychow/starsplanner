@@ -8,6 +8,6 @@ public class Email {
     private static String RECIPIENT = "aratrikapal510@gmail.com";
     public void sendEmail(String subject, String text, String recipient)
     {
-        
+
     }
 }
