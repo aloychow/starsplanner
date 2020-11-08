@@ -1,13 +1,14 @@
 package stars;
 import java.util.*;
-public class Index {
+import java.io.Serializable;
+public class Index implements Serializable {
     private Course course;
     private int indexNum;
     private int vacancies;
     private String groupNum;
     private Queue<Student> waitList;
     private ArrayList<RegisteredCourse> regList;
-    private ArrayList<StudyGroup> studyGroup;//need to add methods for studyGroup, index is a composition of it
+    private ArrayList<StudyGroup> studyGroup;
     public Index()
     {
 
@@ -66,6 +67,14 @@ public class Index {
     public ArrayList<RegisteredCourse> getRegisteredCourses()
     {
         return regList;
+    }
+    public void setStudyGroup(ArrayList<StudyGroup> studyGroup)
+    {
+     this.studyGroup=studyGroup;
+    }
+    public ArrayList<StudyGroup> getStudyGroup()
+    {
+        return studyGroup;
     }
 
 }

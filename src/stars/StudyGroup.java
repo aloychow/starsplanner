@@ -1,5 +1,6 @@
 package stars;
-public class StudyGroup {
+import java.io.Serializable;
+public class StudyGroup implements Serializable{
 
     private String venue;
     private String startTime;

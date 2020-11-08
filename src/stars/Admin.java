@@ -1,6 +1,6 @@
 package stars;
-
-public class Admin extends User {
+import java.io.Serializable;
+public class Admin extends User implements Serializable {
     private String adminID;
     public Admin()
     {

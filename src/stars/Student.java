@@ -1,8 +1,9 @@
 package stars;
 import java.util.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student extends User{
+public class Student extends User implements Serializable{
     private String   name;
     private String   matricNumber;
     private String   gender;

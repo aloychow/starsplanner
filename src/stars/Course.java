@@ -1,6 +1,7 @@
 package stars;
 import java.util.*;
-public class Course {
+import java.io.Serializable;
+public class Course implements Serializable {
     private String name;
     private String courseCode;
     private School school;

@@ -1,6 +1,7 @@
 package stars;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable{
     private String password;
     private String email;
     private String typeOfUser;
