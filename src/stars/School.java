@@ -81,8 +81,23 @@ public class School implements Serializable{
         return c;
     }
     public boolean checkWithinAccessPeriod()
-    { //add functionality to see if it is within access period
-        return true;
+    { //recheck the functionality of this function
+        if(this.registrationEndPeriod!=null && this.registrationEndPeriod!=null)
+        {
+            Date currentDate=new Date();
+            if (currentDate.compareTo(registrationStartPeriod) >= 0 && currentDate.compareTo(registrationEndPeriod) < 0)
+                { //within access period
+                    return true;
+                }
+            else
+                { // not within the access period
+                return false;
+                }
+        }
+        else {
+            System.out.println("Sorry, access period for the school has not been set ");
+            return false;
+        }
     }
 
 }
