@@ -31,6 +31,7 @@ public class FileController {
         return currentUser;
     }
     //method to save admins to the dat file
+
     public void saveAdminList(){
         try {
             FileOutputStream fos = new FileOutputStream(adminFileLoc);
@@ -104,6 +105,7 @@ public class FileController {
         }
     }
     //method to retrieve school info from files into the system
+    //blah blah
     public void RetrieveSchools(){
 
         try {
