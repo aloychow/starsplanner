@@ -80,5 +80,9 @@ public class School implements Serializable{
         System.out.println("Course successfully added!");
         return c;
     }
+    public boolean checkWithinAccessPeriod()
+    { //add functionality to see if it is within access period
+        return true;
+    }
 
 }

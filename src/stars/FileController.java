@@ -158,7 +158,7 @@ public class FileController {
         // write to serialized file - update/insert/delete
         // example - add one more Admin
         //Admin(String email, String password, String typeOfUser, String userName, String adminID)
-        Admin ad1 = new Admin("jos@ntu.edu.sg", "password", "Admin", "Joseph", "jos986");
+        Admin ad1 = new Admin("rach@ntu.edu.sg", "password123", "Admin", "Rachel_green", "1234");
         // add to list
         adminList.add(ad1);
         // list.remove(p);  // remove if p equals object in the list

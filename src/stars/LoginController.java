@@ -5,43 +5,67 @@ import java.security.NoSuchAlgorithmException;
 public class LoginController {
     private static final String SALT= "STARWARS";
     private User user;
+    FileController fc=new FileController();
     public boolean validateLogin(String userName, String enteredPassword, String typeOfUser)
-    {   FileController fc=new FileController();
-        if(userName!=null && enteredPassword!=null&& (typeOfUser=="Student" || typeOfUser=="Admin") )
-        {
-        String hashedPassword = buildPasswordHash(enteredPassword);
-            if(typeOfUser=="Student")
-            {
-                for(int i=0;i<fc.getStudentList().size();i++)
-                {
-                    if((fc.getStudentList().get(i).getUserName()==userName)&&(fc.getStudentList().get(i).getPassword()==hashedPassword))
-                    {   user=fc.getStudentList().get(i);
-                        PrintMenuUI studentUI=new StudentModeUI();
-                        studentUI.showMenu(user);
+    {
+        if(userName!=null && enteredPassword!=null&& (typeOfUser=="Student" || typeOfUser=="Admin") ) {
+            String hashedPassword = buildPasswordHash(enteredPassword);
+            if (typeOfUser == "Student") {
 
-                        return true;
+                user = fc.getStudentByUsername(userName);
+                if (user != null)
+                {
+                        Student s=(Student)user;//downcasting to a Student object so as to access the student's school
+                    if(s.getSchool().checkWithinAccessPeriod())
+                    {
+                        if (user.getUserName() == userName && user.getPassword() == hashedPassword)
+                        {
+                            PrintMenuUI studentUI = new StudentModeUI();
+                            studentUI.showMenu(user);
+                            return true;
+                        }
+                        else
+                        {
+                            System.out.println("Please enter valid password");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Sorry. Cannot access if it is not access period.");
                     }
                 }
-            }
-           else if(typeOfUser=="Admin")
-            {
-                for(int i=0;i<fc.getAdminList().size();i++)
+                else
                 {
-                    if((fc.getAdminList().get(i).getUserName()==userName)&&(fc.getStudentList().get(i).getPassword()==hashedPassword))
-                    {   user=fc.getAdminList().get(i);
-                        PrintMenuUI adminUI=new AdminModeUI();
+                    System.out.println("Please enter a valid username");
+                }
+            }
+            else {
+                user = fc.getAdminByUsername(userName);
+                if (user != null)
+                {
+                    if (user.getUserName() == userName && user.getPassword() == hashedPassword)
+                    {
+                        PrintMenuUI adminUI = new AdminModeUI();
                         adminUI.showMenu(user);
                         return true;
+
+                    }
+                    else
+                    {
+                        System.out.println("Please enter a valid password");
                     }
                 }
+                else
+                {
+                    System.out.println("Please enter a valid username");
+                }
             }
-           else
+        }
+        else
+            System.out.println("Please enter valid email and password");
+
                return false;
         }
-
-        return false;
-
-    }
 
 
     private static String getHash(String password) {

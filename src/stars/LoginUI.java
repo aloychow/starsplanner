@@ -23,7 +23,7 @@ private static String typeOfUser;
         System.out.print("Enter type of User (Student/Admin): ");
         typeOfUser = sc.next();
         while (!login.validateLogin(enteredUsername, enteredPassword, typeOfUser)) {
-            displayErrorMsg();
+            //displayErrorMsg();
             System.out.print("Enter your email: ");
             enteredUsername = sc.next();
             System.out.print("Enter your password: ");
@@ -37,11 +37,11 @@ private static String typeOfUser;
 
     }
 
-    public static void displayErrorMsg() {
+    /*public static void displayErrorMsg() {
         // TODO
         System.err.println("Please enter valid email and password.");
         System.out.println("");
-    }
+    }*/
     private static void displayWelcomeMessage()
     {
         System.out.println("");
