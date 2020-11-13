@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 public class LoginController {
     private static final String SALT= "STARWARS";
-
+    private User user;
     public boolean validateLogin(String userName, String enteredPassword, String typeOfUser)
     {   FileController fc=new FileController();
         if(userName!=null && enteredPassword!=null&& (typeOfUser=="Student" || typeOfUser=="Admin") )
@@ -15,7 +15,12 @@ public class LoginController {
                 for(int i=0;i<fc.getStudentList().size();i++)
                 {
                     if((fc.getStudentList().get(i).getUserName()==userName)&&(fc.getStudentList().get(i).getPassword()==hashedPassword))
-                    return true;
+                    {   user=fc.getStudentList().get(i);
+                        PrintMenuUI studentUI=new StudentModeUI();
+                        studentUI.showMenu(user);
+
+                        return true;
+                    }
                 }
             }
            else if(typeOfUser=="Admin")
@@ -23,7 +28,11 @@ public class LoginController {
                 for(int i=0;i<fc.getAdminList().size();i++)
                 {
                     if((fc.getAdminList().get(i).getUserName()==userName)&&(fc.getStudentList().get(i).getPassword()==hashedPassword))
+                    {   user=fc.getAdminList().get(i);
+                        PrintMenuUI adminUI=new AdminModeUI();
+                        adminUI.showMenu(user);
                         return true;
+                    }
                 }
             }
            else
