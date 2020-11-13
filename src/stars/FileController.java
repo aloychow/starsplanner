@@ -105,7 +105,6 @@ public class FileController {
         }
     }
     //method to retrieve school info from files into the system
-    //blah blah
     public void RetrieveSchools(){
 
         try {
@@ -124,6 +123,37 @@ public class FileController {
             e.printStackTrace();
         }
     }
+
+    //function to get the Student object reference by username
+    public Student getStudentByUsername(String userName)
+    {
+        for (int i=0;i<studentList.size();i++) {
+            if (studentList.get(i).getUserName() != null && studentList.get(i).getUserName().equals(userName))
+                return studentList.get(i);
+        }
+        return null;
+    }
+
+//function to get the Admin object reference by username
+    public Admin getAdminByUsername(String userName)
+    {
+        for (int i=0;i<adminList.size();i++) {
+            if (adminList.get(i).getUserName() != null && adminList.get(i).getUserName().equals(userName))
+                return adminList.get(i);
+        }
+        return null;
+    }
+
+    //function to get the School object reference by username
+    public School getSchoolByName(String name)
+    {
+        for (int i=0;i<schoolList.size();i++) {
+            if (schoolList.get(i).getName() != null && schoolList.get(i).getName().equals(name))
+                return schoolList.get(i);
+        }
+        return null;
+    }
+
     public void populate(){
         // write to serialized file - update/insert/delete
         // example - add one more Admin
