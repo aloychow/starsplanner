@@ -1,5 +1,6 @@
 package stars;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -35,9 +36,10 @@ public class AdminModeUI implements PrintMenuUI{
 
                 switch (choice) {
                     case 1:
-                        System.out.println("Enter the School Name");
-                        String school=sc.next();
+
                         try {
+                            System.out.println("Enter the School Name");
+                            String school=sc.next();
                             System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
                             String startDate=sc.next();
                             Date convertedStartDate = format.parse(startDate);
@@ -52,6 +54,10 @@ public class AdminModeUI implements PrintMenuUI{
                         } catch (ParseException e) {
                             e.printStackTrace();
                             System.out.println("Invalid registration period format");
+                        }
+                        catch(NullPointerException e)
+                        {
+                            e.printStackTrace();
                         }
                         break;
                     case 2:

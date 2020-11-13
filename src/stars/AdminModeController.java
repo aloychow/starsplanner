@@ -7,12 +7,25 @@ public class AdminModeController {
     public void editStudentAccessPeriod(String school, Date startDate, Date endDate) {
         //TODO
         if(school!=null)
-        {  //get the school object by its name, use a FileController method for this
-            School updateSchool=null;
-            updateSchool.setRegistrationStartPeriod(startDate);
-            updateSchool.setRegistrationStartPeriod(endDate);
-            System.out.println("Access Period has been updated.");
+        {
+            School updateSchool=fc.getSchoolByName(school);
+            if(updateSchool!=null)
+            {
+                updateSchool.setRegistrationStartPeriod(startDate);
+                updateSchool.setRegistrationStartPeriod(endDate);
+                System.out.println("Access Period has been updated.");
+            }
+            else
+            {
+                System.out.println("School does not exist");
+            }
+
         }
+        else
+        {
+            System.out.println("School value cannot be null");
+        }
+
     }
 
     public void addStudent() {
