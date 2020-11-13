@@ -64,4 +64,21 @@ public class School implements Serializable{
     {
         return courses;
     }
+    public void deleteCourse(Course c) {
+        for (int i = 0 ; i < this.courses.size(); i ++){
+
+            if(this.courses.get(i).getCourseCode().equals(c.getCourseCode())){
+                this.courses.remove(i);
+                System.out.println("Course successfully removed");
+                break;
+            }
+        }
+    }
+    public Course addCourse(String name, String courseCode, String courseType, int vacancies, int totalAUs) {
+        Course c = new Course(name, courseCode, this,courseType,vacancies, totalAUs);
+        this.courses.add(c);
+        System.out.println("Course successfully added!");
+        return c;
+    }
+
 }

@@ -38,6 +38,8 @@ public class Index implements Serializable {
     }
     public void setVacancies(int vacancies)
     {
+        int diff = vacancies-this.vacancies;
+        this.course.editVacancies(diff);//changing the course vacancies accordingly
         this.vacancies=vacancies;
     }
     public int getVacancies()
@@ -75,6 +77,11 @@ public class Index implements Serializable {
     public ArrayList<StudyGroup> getStudyGroup()
     {
         return studyGroup;
+    }
+    public void addStudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType,String lessonType) {
+        StudyGroup sg = new StudyGroup(venue,startTime,endTime,dayOfWeek,weekType,lessonType, this);
+        this.studyGroup.add(sg);
+
     }
 
 }

@@ -122,4 +122,15 @@ public class FileController {
             e.printStackTrace();
         }
     }
+    public void populate(){
+        // write to serialized file - update/insert/delete
+        // example - add one more Admin
+        //Admin(String email, String password, String typeOfUser, String userName, String adminID)
+        Admin ad1 = new Admin("jos@ntu.edu.sg", "password", "Admin", "Joseph", "jos986");
+        // add to list
+        adminList.add(ad1);
+        // list.remove(p);  // remove if p equals object in the list
+
+        saveAdminList();
+    }
 }

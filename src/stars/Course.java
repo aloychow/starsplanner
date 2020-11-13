@@ -71,9 +71,27 @@ public class Course implements Serializable {
     {
         return this.school;
     }
-    public void setIndex()
+
+    public Index setIndex(int indexNum, String groupNum, int vacancies)
     {
-        //setIndex decide what to put
+        Index i = new Index(indexNum, groupNum, vacancies, this);
+        this.index.add(i);
+        this.editVacancies(vacancies);
+        return i;
+    }
+    public void deleteIndex(Index indID) {
+        for (int i = 0 ; i < this.index.size(); i ++){
+
+            if(this.index.get(i).getIndexNum() == indID.getIndexNum()){
+                this.index.remove(i);
+                System.out.println("Index successfully removed");
+                break;
+            }
+        }
+    }
+    //allows increase or decrease of number of vacancies by n
+    public void editVacancies(int n) {
+        this.vacancy = this.vacancy + n;
     }
     public ArrayList<Index> getIndex()
     {
