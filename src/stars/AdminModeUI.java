@@ -30,7 +30,13 @@ public class AdminModeUI implements PrintMenuUI{
 
                 switch (choice) {
                     case 1:
-                        amc.editStudentAccessPeriod();;
+                        System.out.println("Enter the School Name");
+                        String school=sc.next();
+                        System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
+                        String startDate=sc.next();
+                        System.out.println("Enter the new registration end period in dd/mm/yyyy/hh/mm");
+                        String endDate=sc.next();
+                        amc.editStudentAccessPeriod(school, startDate, endDate);
                         break;
                     case 2:
                         amc.addStudent();
