@@ -1,15 +1,20 @@
 package stars;
 import java.util.*;
+
 public class AdminModeController {
     Scanner sc=new Scanner(System.in);
     FileController fc=new FileController();
-    public void editStudentAccessPeriod(String school, String startDate, String endDate) {
+    public void editStudentAccessPeriod(String school, Date startDate, Date endDate) {
         //TODO
         if(school!=null)
-        {
-            
+        {  //get the school object by its name, use a FileController method for this
+            School updateSchool=null;
+            updateSchool.setRegistrationStartPeriod(startDate);
+            updateSchool.setRegistrationStartPeriod(endDate);
+            System.out.println("Access Period has been updated.");
         }
     }
+
     public void addStudent() {
         //TODO
     }

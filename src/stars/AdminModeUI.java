@@ -1,6 +1,11 @@
 package stars;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 
 public class AdminModeUI implements PrintMenuUI{
     public void showMenu(User user) {
@@ -12,7 +17,7 @@ public class AdminModeUI implements PrintMenuUI{
             int choice;
             Scanner sc = new Scanner(System.in);
             AdminModeController amc = new AdminModeController();
-
+            SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy/HH/mm");
             do {
                 System.out.println("");
                 System.out.println("");
@@ -32,11 +37,22 @@ public class AdminModeUI implements PrintMenuUI{
                     case 1:
                         System.out.println("Enter the School Name");
                         String school=sc.next();
-                        System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
-                        String startDate=sc.next();
-                        System.out.println("Enter the new registration end period in dd/mm/yyyy/hh/mm");
-                        String endDate=sc.next();
-                        amc.editStudentAccessPeriod(school, startDate, endDate);
+                        try {
+                            System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
+                            String startDate=sc.next();
+                            Date convertedStartDate = format.parse(startDate);
+                            System.out.println(convertedStartDate);
+                            System.out.println(format.format(convertedStartDate));
+                            System.out.println("Enter the new registration end period in dd/mm/yyyy/hh/mm");
+                            String endDate=sc.next();
+                            Date convertedEndDate = format.parse(endDate);
+                            System.out.println(convertedEndDate);
+                            System.out.println(format.format(convertedEndDate));
+                            amc.editStudentAccessPeriod(school, convertedStartDate, convertedEndDate);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                            System.out.println("Invalid registration period format");
+                        }
                         break;
                     case 2:
                         amc.addStudent();
