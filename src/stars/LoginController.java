@@ -1,22 +1,40 @@
 package stars;
-import java.io.Console;
+import java.util.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 public class LoginController {
     private static final String SALT= "STARWARS";
+
     public boolean validateLogin(String userName, String enteredPassword, String typeOfUser)
-    {   if(userName!=null && enteredPassword!=null&& (typeOfUser=="Student" || typeOfUser=="Admin") )
+    {   FileController fc=new FileController();
+        if(userName!=null && enteredPassword!=null&& (typeOfUser=="Student" || typeOfUser=="Admin") )
         {
         String hashedPassword = buildPasswordHash(enteredPassword);
-        //now need to use FileController to verify the username and the password
-            return true;
-        }
-        else
-        {
-        return false;
+            if(typeOfUser=="Student")
+            {
+                for(int i=0;i<fc.getStudentList().size();i++)
+                {
+                    if((fc.getStudentList().get(i).getUserName()==userName)&&(fc.getStudentList().get(i).getPassword()==hashedPassword))
+                    return true;
+                }
+            }
+           else if(typeOfUser=="Admin")
+            {
+                for(int i=0;i<fc.getAdminList().size();i++)
+                {
+                    if((fc.getAdminList().get(i).getUserName()==userName)&&(fc.getStudentList().get(i).getPassword()==hashedPassword))
+                        return true;
+                }
+            }
+           else
+               return false;
         }
 
+        return false;
+
     }
+
+
     private static String getHash(String password) {
         StringBuilder hash = new StringBuilder();
 
