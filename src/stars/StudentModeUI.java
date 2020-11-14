@@ -2,7 +2,7 @@ package stars;
 
 import java.util.Scanner;
 
-public class StudentModeUI implements PrintMenuUI {
+public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
     public void showMenu(User user) {
         //TODO
         if (user != null) {

@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
-public class AdminModeUI implements PrintMenuUI{
+public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
     public void showMenu(User user) {
         //TODO
         if(user !=null)
