@@ -19,7 +19,7 @@ public class Student extends User implements Serializable{
     }
 
     public Student(String name, String matricNumber, String gender, String nationality, int year, int numberOFAUs,
-                   ArrayList<RegisteredCourse> regCourses, School school, String email, String password, String typeOfUser,  String userName) {
+                   ArrayList<RegisteredCourse> regCourses, School school, String email, String password, String typeOfUser, String userName) {
         super(email, password, typeOfUser, userName);
         this.name = name;
         this.matricNumber = matricNumber;
@@ -31,7 +31,17 @@ public class Student extends User implements Serializable{
         this.school = school;
 
     }
+    public Student(String name, String matricNumber, String gender, String nationality, int year, School school, String email, String password,String typeOfUser, String userName)
 
+    {
+        super(email, password, typeOfUser, userName);
+        this.name = name;
+        this.matricNumber = matricNumber;
+        this.gender = gender;
+        this.nationality = nationality;
+        this.year = year;
+        this.school = school;
+    }
     public String getName() {
         return name;
     }

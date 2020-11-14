@@ -7,7 +7,7 @@ public class Admin extends User implements Serializable {
         super();
     }
 
-    public Admin(String email, String password, String typeOfUser, String userName, String adminID) {
+    public Admin(String email, String password,String typeOfUser, String userName, String adminID) {
         super(email, password, typeOfUser, userName);
         this.adminID = adminID;
     }
