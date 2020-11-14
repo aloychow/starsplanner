@@ -9,7 +9,7 @@ public class LoginController {
     public boolean validateLogin(String userName, String enteredPassword, String typeOfUser)
     {
         if(userName!=null && enteredPassword!=null&& (typeOfUser=="Student" || typeOfUser=="Admin") ) {
-            String hashedPassword = buildPasswordHash(enteredPassword);
+            //String hashedPassword = User.buildPasswordHash(enteredPassword);
             if (typeOfUser == "Student") {
 
                 user = fc.getStudentByUsername(userName);
@@ -18,7 +18,7 @@ public class LoginController {
                         Student s=(Student)user;//downcasting to a Student object so as to access the student's school
                     if(s.getSchool().checkWithinAccessPeriod())
                     {
-                        if (user.getUserName() == userName && user.getPassword() == hashedPassword)
+                        if (user.matchPassword(enteredPassword))
                         {
                             PrintMenuUI studentUI = new StudentModeUI();
                             studentUI.showMenu(user);
@@ -43,7 +43,7 @@ public class LoginController {
                 user = fc.getAdminByUsername(userName);
                 if (user != null)
                 {
-                    if (user.getUserName() == userName && user.getPassword() == hashedPassword)
+                    if (user.matchPassword(enteredPassword))
                     {
                         PrintMenuUI adminUI = new AdminModeUI();
                         adminUI.showMenu(user);
@@ -62,13 +62,13 @@ public class LoginController {
             }
         }
         else
-            System.out.println("Please enter valid email and password");
+            System.out.println("Please enter valid email, password and user domain");
 
                return false;
         }
 
 
-    private static String getHash(String password) {
+   /* private static String getHash(String password) {
         StringBuilder hash = new StringBuilder();
 
         try {
@@ -91,5 +91,5 @@ public class LoginController {
         String saltedPassword = password+SALT;
         String hashedPassword = getHash(saltedPassword);
         return hashedPassword;
-    }
+    }*/
 }

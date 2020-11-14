@@ -1,11 +1,15 @@
 package stars;
 import java.io.Serializable;
+import java.util.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class User implements Serializable{
     private String password;
     private String email;
     private String typeOfUser;
     private String userName;
+    private static final String SALT= "STARWARS";
     public User()
     {
 
@@ -47,12 +51,38 @@ public class User implements Serializable{
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
     public boolean matchPassword(String password) {
         //method that will be used for password checking during login
+        password=buildPasswordHash(password);
         if (this.password.equals(password))
             return true;
         else
             return false;
+    }
+    public static String getHash(String password) {
+        StringBuilder hash = new StringBuilder();
+
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-256"); // using SHA-256 algorithm for password hashing
+            byte[] hashedBytes = sha.digest(password.getBytes());
+            char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+            for (int idx = 0; idx < hashedBytes.length; idx++) {
+                byte b = hashedBytes[idx];
+                hash.append(digits[(b & 0xf0) >> 4]);
+                hash.append(digits[b & 0x0f]);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            // hash generation failure
+        }
+
+        return (hash.toString());
+    }
+
+    public static String buildPasswordHash(String password) {
+        String saltedPassword = password + SALT;
+        String hashedPassword = getHash(saltedPassword);
+        return hashedPassword;
     }
 }
 
