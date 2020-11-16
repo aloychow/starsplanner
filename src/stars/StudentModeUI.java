@@ -52,7 +52,8 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                         smc.swapIndexnumber();
                         break;
                     case 7:
-                        smc.checkAccessPeriod();
+                        School school=student.getSchool();
+                        smc.checkAccessPeriod(school);
                         break;
                     case 8:
                         System.out.println("Program terminating Ö.");

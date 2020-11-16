@@ -1,5 +1,5 @@
 package stars;
-
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -50,8 +50,12 @@ public class StudentModeController {
     public void swapIndexnumber() {
         //TODO
     }
-    public void checkAccessPeriod() {
+    public void checkAccessPeriod(School school) {
         //TODO
+        Date regStartDate=school.getRegistrationStartPeriod();
+        Date regEndDate=school.getRegistrationEndPeriod();
+        System.out.println("The registration access period is::  "+regStartDate+" to "+regEndDate);
+
     }
 
 }
