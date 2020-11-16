@@ -192,10 +192,13 @@ public class FileController {
     }
     public void printStudentList()
     {   System.out.println("");
-        System.out.println("Student Name\t Matriculation Number \t Gender \t Nationality \t School\t Year of Study");
+        System.out.println("List of students");
+        System.out.println("Student Name\t Matriculation Number \t Gender \t Nationality \t School\t Year of Study\t");
+        System.out.println("_____________________________________________________________________________________");
         for(int i=0;i<studentList.size();i++)
         {
             Student student=studentList.get(i);
+            System.out.println((i+1)+". "+student.getName()+"\t"+student.getMatricNumber()+"\t"+student.getGender()+"\t"+student.getNationality()+"\t"+student.getSchool()+"\t"+student.getYear());
 
         }
 
