@@ -37,11 +37,12 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                         smc.dropCourse();
                         break;
                     case 3:
-                        smc.printRegisteredCourses();
+                        Student student = (Student)user;
+                        smc.printRegisteredCourses(student);
                         break;
                     case 4:
                         System.out.println("Enter the index number you want to check vacancies for");
-                        String index=sc.nextLine();
+                        int index=sc.nextInt();
                         smc.checkVacanciesAvailable(index);
                         break;
                     case 5:

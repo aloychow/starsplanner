@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
+import java.lang.String;
 public class FileController {
     private static final String adminFileLoc= "./source/Admin.dat";
     private static final String studentFileLoc = "./source/Student.dat";
@@ -165,4 +166,23 @@ public class FileController {
 
         saveAdminList();
     }
+
+
+    // get a specific index from the list of schools
+
+
+    public Index findIndexFromSchools(int index){
+        Index ix = null ;
+        for (int s=0; s<schoolList.size();s++){
+            for (int c=0; c<schoolList.get(s).getCourses().size();c++){
+                for (int i=0; i<schoolList.get(s).getCourses().get(c).getIndex().size();i++){
+                    if (schoolList.get(s).getCourses().get(c).getIndex().get(i).getIndexNum()==index){
+                        ix = schoolList.get(s).getCourses().get(c).getIndex().get(i);
+                    }
+                }
+            }
+        }
+        return ix;
+    }
+
 }

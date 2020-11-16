@@ -5,6 +5,7 @@ public class Index implements Serializable {
     private Course course;
     private int indexNum;
     private int vacancies;
+    private int totalSlots;
     private String groupNum;
     private Queue<Student> waitList;
     private ArrayList<RegisteredCourse> regList;
@@ -54,10 +55,6 @@ public class Index implements Serializable {
     {
         return this.groupNum;
     }
-    public void setWaitlist(Queue<Student> waitList)
-    {
-        this.waitList=waitList;
-    }
     public Queue<Student> getWaitList()
     {
         return this.waitList;
@@ -78,7 +75,28 @@ public class Index implements Serializable {
     {
         return studyGroup;
     }
-    public void addStudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType,String lessonType) {
+
+    public int getTotalSlots() {
+        return totalSlots;
+    }
+
+    public void setTotalSlots(int totalSlots) {
+        this.totalSlots = totalSlots;
+    }
+
+    public void setWaitList(Queue<Student> waitList) {
+        this.waitList = waitList;
+    }
+
+    public ArrayList<RegisteredCourse> getRegList() {
+        return regList;
+    }
+
+    public void setRegList(ArrayList<RegisteredCourse> regList) {
+        this.regList = regList;
+    }
+
+    public void addStudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType, String lessonType) {
         StudyGroup sg = new StudyGroup(venue,startTime,endTime,dayOfWeek,weekType,lessonType, this);
         this.studyGroup.add(sg);
 
