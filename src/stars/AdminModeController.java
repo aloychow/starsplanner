@@ -12,7 +12,7 @@ public class AdminModeController {
             if(updateSchool!=null)
             {
                 updateSchool.setRegistrationStartPeriod(startDate);
-                updateSchool.setRegistrationStartPeriod(endDate);
+                updateSchool.setRegistrationEndPeriod(endDate);
                 System.out.println("Access Period has been updated.");
             }
             else
