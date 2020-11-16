@@ -5,12 +5,12 @@ public class RegisteredCourse implements Serializable {
     private Index regIndex;
     private String regStatus;
     private Student student;
-    private Index index;
-    public RegisteredCourse(Index regIndex, String regStatus, Student student, Index index) {
+
+    public RegisteredCourse(Index regIndex, String regStatus, Student student) {
         this.regIndex = regIndex;
         this.regStatus = regStatus;
         this.student=student;
-        this.index=index;
+
     }
     public Index getRegIndex() {
         return regIndex;
@@ -32,13 +32,6 @@ public class RegisteredCourse implements Serializable {
     {
         return student;
     }
-    public void setIndex(Index index)
-    {
-        this.index=index;
-    }
-    public Index getIndex()
-    {
-        return index;
-    }
+
 
 }
