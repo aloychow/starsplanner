@@ -154,6 +154,30 @@ public class FileController {
         }
         return null;
     }
+    
+    public Index getIndexByID(int ID) {
+    	for (int i=0;i<schoolList.size();i++) {
+    		for (Course c : schoolList.get(i).getCourses()) {
+    			for (Index ind : c.getIndex()) {
+    				if (ind.getIndexNum() != 0 && ind.getIndexNum() == ID) {
+    					return ind;
+    				}
+    			}
+    		}
+        }
+        return null;
+    }
+    public Course getCourseByCode(String cCode) {
+    	for (int i=0;i<schoolList.size();i++) {
+    		for (Course c : schoolList.get(i).getCourses()) {
+				if (c.getCourseCode() != null && c.getCourseCode().equals(cCode)) {
+					return c;
+    		
+    			}
+    		}
+        }
+        return null;
+    }
 
     public void populate(){
         // write to serialized file - update/insert/delete
