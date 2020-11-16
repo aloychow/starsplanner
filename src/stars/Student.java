@@ -9,7 +9,7 @@ public class Student extends User implements Serializable{
     private String   gender;
     private String   nationality;
     private int    year;
-    private int    numberOFAUs;
+    private int    numberOfAUs;
     private ArrayList<RegisteredCourse> regCourses;
     private School school;
     public static final  int MAX_AUs = 22;
@@ -26,7 +26,7 @@ public class Student extends User implements Serializable{
         this.gender = gender;
         this.nationality = nationality;
         this.year = year;
-        this.numberOFAUs = numberOFAUs;
+        this.numberOfAUs = numberOFAUs;
         this.regCourses = regCourses;
         this.school = school;
 
@@ -82,12 +82,12 @@ public class Student extends User implements Serializable{
         this.year = year;
     }
 
-    public int getNumberOFAUs() {
-        return numberOFAUs;
+    public int getNumberOfAUs() {
+        return numberOfAUs;
     }
 
-    public void setNumberOFAUs(int numberOFAUs) {
-        this.numberOFAUs = numberOFAUs;
+    public void setNumberOfAUs(int numberOFAUs) {
+        this.numberOfAUs = numberOFAUs;
     }
 
     public ArrayList<RegisteredCourse> getRegCourses() {
@@ -105,5 +105,7 @@ public class Student extends User implements Serializable{
     public void setSchool(School school) {
         this.school = school;
     }
+
+
 
 }
