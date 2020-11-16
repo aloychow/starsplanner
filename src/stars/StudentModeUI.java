@@ -28,6 +28,7 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                 System.out.println("8: Quit");
                 System.out.print("-------Please Enter your choice:");
                 choice = sc.nextInt();
+                Student student = (Student)user;
 
                 switch (choice) {
                     case 1:
@@ -37,7 +38,6 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                         smc.dropCourse();
                         break;
                     case 3:
-                        Student student = (Student)user;
                         smc.printRegisteredCourses(student);
                         break;
                     case 4:
