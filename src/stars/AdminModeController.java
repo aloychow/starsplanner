@@ -35,11 +35,14 @@ public class AdminModeController {
         Student student=new Student();
         student.setTypeOfUser("Student");
         String username,email, matricNo, gender, nationality, name, schoolName;
+        String choice="sendEmail";
+        String recipient;
         int year;
         School school;
         String pass1,pass2;
         boolean passMatch=false;
         boolean validEmail=false;
+        char ch;
         Student presentStudent;
         do {
             System.out.println("Please enter the student's username");
@@ -60,6 +63,7 @@ public class AdminModeController {
                System.out.println("Error. You entered an invalid email");
            }
        }while(validEmail!=false);
+       recipient=email;
 
 
         Console console = System.console();
@@ -115,7 +119,32 @@ public class AdminModeController {
                 System.out.println("Error. This school does not exist.");
             }
         }while(school!=null);
-        student=school.addStudent(name, matricNo,gender, nationality, year, school, email, pass1, "Student", username);
+        do {
+            System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W");
+           ch = sc.nextLine().charAt(0);
+            switch (ch) {
+                case 'E':
+                    recipient = email;
+                    choice = "sendEmail";
+                    break;
+                case 'T':
+                    System.out.println("Enter the student's telegram number");
+                    recipient = sc.nextLine().trim();
+                    choice = "sendTele";
+                    break;
+                case 'W':
+                    System.out.println("Enter the student's whatsapp number");
+                    recipient = sc.nextLine().trim();
+                    choice = "sendWhatsapp";
+                    break;
+                default:
+                    System.out.println("Incorrect input. Try again.");
+                    System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W");
+                    ch=sc.nextLine().charAt(0);
+            }
+        }while(ch!='T'&&ch!='W'&&ch!='E');
+
+        student=school.addStudent(name, matricNo,gender, nationality, year, school,choice,recipient, email, pass1, "Student", username);
         fc.getStudentList().add(student);
         fc.saveStudentList();
         fc.saveSchoolList();

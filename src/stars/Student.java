@@ -12,6 +12,7 @@ public class Student extends User implements Serializable{
     private int    numberOfAUs;
     private ArrayList<RegisteredCourse> regCourses;
     private School school;
+    private HashMap<String, String> notificationType=new HashMap<String, String>();
     public static final  int MAX_AUs = 22;
     public Student()
     {
@@ -19,7 +20,7 @@ public class Student extends User implements Serializable{
     }
 
     public Student(String name, String matricNumber, String gender, String nationality, int year, int numberOFAUs,
-                   ArrayList<RegisteredCourse> regCourses, School school, String email, String password, String typeOfUser, String userName) {
+                   ArrayList<RegisteredCourse> regCourses, School school, String choice, String recipient, String email, String password, String typeOfUser, String userName) {
         super(email, password, typeOfUser, userName);
         this.name = name;
         this.matricNumber = matricNumber;
@@ -29,9 +30,10 @@ public class Student extends User implements Serializable{
         this.numberOfAUs = numberOFAUs;
         this.regCourses = regCourses;
         this.school = school;
+        notificationType.put(choice, recipient);
 
     }
-    public Student(String name, String matricNumber, String gender, String nationality, int year, School school, String email, String password,String typeOfUser, String userName)
+    public Student(String name, String matricNumber, String gender, String nationality, int year, School school,String choice,String recipient, String email, String password,String typeOfUser, String userName)
 
     {
         super(email, password, typeOfUser, userName);
@@ -41,6 +43,7 @@ public class Student extends User implements Serializable{
         this.nationality = nationality;
         this.year = year;
         this.school = school;
+        notificationType.put(choice,recipient);
     }
     public String getName() {
         return name;
@@ -106,6 +109,20 @@ public class Student extends User implements Serializable{
         this.school = school;
     }
 
+    //adding a registered course for the student
+    public void addRegCourses(RegisteredCourse Course) {
+        this.regCourses.add(Course);
+    }
+    //removing a course which the student unregistered from
+    public void removeRegCourses(RegisteredCourse Course) {
+        this.regCourses.remove(Course);
+    }
 
+    public HashMap<String, String> getNotificationType() {
+        return notificationType;
+    }
 
+    public void setNotificationType(HashMap<String, String> notificationType) {
+        this.notificationType = notificationType;
+    }
 }

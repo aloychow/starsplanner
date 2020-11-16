@@ -7,10 +7,10 @@ public class StudentModeController {
     Scanner sc=new Scanner(System.in);
     FileController fc=new FileController();
     public void addCourse() {
-        //TODO
+
     }
     public void dropCourse() {
-        //TODO
+
     }
     public void printRegisteredCourses(Student student) {
         //TODO
