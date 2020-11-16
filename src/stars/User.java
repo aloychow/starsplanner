@@ -3,6 +3,8 @@ import java.io.Serializable;
 import java.util.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class User implements Serializable{
     private String password;
@@ -83,6 +85,15 @@ public class User implements Serializable{
         String saltedPassword = password + SALT;
         String hashedPassword = getHash(saltedPassword);
         return hashedPassword;
+    }
+    //method to validate the email and check if it is correct
+    public boolean validateEmail(String email) {
+        Pattern pattern;
+        Matcher matcher;
+        String emailPattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
+        matcher = pattern.matcher(email);
+        return matcher.find();
     }
 }
 

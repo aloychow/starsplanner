@@ -74,6 +74,13 @@ public class School implements Serializable{
             }
         }
     }
+    public Student addStudent(String name, String matricNo, String gender, String nationality, int year, School school, String email, String password, String typeOfUser, String username)
+    {
+        Student student=new Student(name, matricNo, gender, nationality, year, school, email, password, typeOfUser, username);
+        this.students.add(student);
+        System.out.println("Student successfully added!");
+        return student;
+    }
     public Course addCourse(String name, String courseCode, String courseType, int vacancies, int totalAUs) {
         Course c = new Course(name, courseCode, this,courseType,vacancies, totalAUs);
         this.courses.add(c);

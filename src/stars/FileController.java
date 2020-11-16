@@ -166,6 +166,16 @@ public class FileController {
 
         saveAdminList();
     }
+    public void printStudentList()
+    {   System.out.println("");
+        System.out.println("Student Name\t Matriculation Number \t Gender \t Nationality \t School\t Year of Study");
+        for(int i=0;i<studentList.size();i++)
+        {
+            Student student=studentList.get(i);
+
+        }
+
+    }
 
 
     // get a specific index from the list of schools
