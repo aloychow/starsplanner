@@ -10,7 +10,7 @@ public class StudentModeController {
     public void printRegisteredCourses() {
         //TODO
     }
-    public void checkVacanciesAvailable() {
+    public void checkVacanciesAvailable(String index) {
         //TODO
     }
     public void changeIndexNumber(){
