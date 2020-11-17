@@ -59,6 +59,15 @@ public class Index implements Serializable {
     {
         return this.waitList;
     }
+
+    /**
+     * function to add student into a waitlist
+     * @param student
+     */
+    public void addToWaitList(Student student)
+    {
+        waitList.add(student);
+    }
     public void setRegisteredCourses(ArrayList<RegisteredCourse> regList)
     {
         this.regList=regList;
