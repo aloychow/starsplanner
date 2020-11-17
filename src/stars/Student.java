@@ -110,12 +110,12 @@ public class Student extends User implements Serializable{
     }
 
     //adding a registered course for the student
-    public void addRegCourses(RegisteredCourse Course) {
-        this.regCourses.add(Course);
+    public void addRegCourses(RegisteredCourse course) {
+        this.regCourses.add(course);
     }
     //removing a course which the student unregistered from
-    public void removeRegCourses(RegisteredCourse Course) {
-        this.regCourses.remove(Course);
+    public void removeRegCourses(RegisteredCourse course) {
+        this.regCourses.remove(course);
     }
 
     public HashMap<String, String> getNotificationType() {
