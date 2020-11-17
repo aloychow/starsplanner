@@ -9,7 +9,8 @@ public class StudentModeController {
     public void addCourse() {
 
     }
-    public void dropCourse() {
+    public void dropCourse()
+    {
 
     }
     public void printRegisteredCourses(Student student) {

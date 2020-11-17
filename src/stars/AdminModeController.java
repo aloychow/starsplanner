@@ -143,6 +143,8 @@ public class AdminModeController {
                     ch=sc.nextLine().charAt(0);
             }
         }while(ch!='T'&&ch!='W'&&ch!='E');
+        //hashing of the password is done
+        pass1=student.buildPasswordHash(pass1);
 
         student=school.addStudent(name, matricNo,gender, nationality, year, school,choice,recipient, email, pass1, "Student", username);
         fc.getStudentList().add(student);
