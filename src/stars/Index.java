@@ -96,11 +96,21 @@ public class Index implements Serializable {
         this.regList = regList;
     }
 
-    public void addStudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType, String lessonType) {
+
+    public void addStudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType,LessonType lessonType) {
         StudyGroup sg = new StudyGroup(venue,startTime,endTime,dayOfWeek,weekType,lessonType, this);
         this.studyGroup.add(sg);
 
     }
+
+    public void deleteStudyGroup(LessonType l) {
+        for (StudyGroup sg : this.studyGroup) {
+            if (sg.getLessonType().equals(l)) {
+                this.studyGroup.remove(sg);
+            }
+        }
+    }
+
 
     public void allocateVacancies(Course course, Index index) {
 

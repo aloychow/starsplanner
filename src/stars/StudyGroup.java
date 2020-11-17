@@ -8,12 +8,12 @@ public class StudyGroup implements Serializable{
     private int dayOfWeek;
     private String weekType;
     private Index index;
-    private String lessonType;
+    private LessonType lessonType;
     public StudyGroup()
     {
 
     }
-    public StudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType, String lessonType,Index index) {
+    public StudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType, LessonType lessonType,Index index) {
         this.venue = venue;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -52,11 +52,11 @@ public class StudyGroup implements Serializable{
     public void setWeekType(String weekType) {
         this.weekType = weekType;
     }
-    public String getLessonType()
+    public LessonType getLessonType()
     {
         return lessonType;
     }
-    public void setLessonType(String lessonType)
+    public void setLessonType(LessonType lessonType)
     {
         this.lessonType=lessonType;
     }

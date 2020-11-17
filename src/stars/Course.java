@@ -6,14 +6,15 @@ public class Course implements Serializable {
     private String courseCode;
     private School school;
     private ArrayList<Index> index;
-    private String courseType;
+    private CourseType courseType;
     private int vacancy;
     private int totalAUs;
+    private int nLectures;
     public Course()
     {
 
     }
-    public Course(String name, String courseCode, School school, String courseType,int vacancy, int totalAUs)
+    public Course(String name, String courseCode, School school, CourseType courseType,int vacancy, int totalAUs, int nLectures)
     {	//need to do object creation for ArrayList index here maybe
         //if school is a composition of course, can we add a school object inside course?
         this.name=name;
@@ -22,6 +23,18 @@ public class Course implements Serializable {
         this.courseType=courseType;
         this.vacancy=vacancy;
         this.totalAUs=totalAUs;
+        this.nLectures=nLectures;
+    }
+    public Course(String name, String courseCode, School school, CourseType courseType, int totalAUs, int nLectures)
+    {	//need to do object creation for ArrayList index here maybe
+        //if school is a composition of course, can we add a school object inside course?
+        this.name=name;
+        this.courseCode=courseCode;
+        this.school=school;
+        this.courseType=courseType;
+        this.vacancy=0;
+        this.totalAUs=totalAUs;
+        this.nLectures = nLectures;
     }
     public void setName(String name)
     {
@@ -39,13 +52,19 @@ public class Course implements Serializable {
     {
         return this.courseCode;
     }
-    public void setCourseType(String courseType)
+    public void setCourseType(CourseType courseType)
     {
         this.courseType=courseType;
     }
-    public String getCourseType()
+    public CourseType getCourseType()
     {
         return this.courseType;
+    }
+    public int getnLectures() {
+        return nLectures;
+    }
+    public void setnLectures(int nLectures) {
+        this.nLectures = nLectures;
     }
     public void setVacancy(int vacancy)
     {
