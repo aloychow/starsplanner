@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 public class SendEmail implements Notifications{
     public SendEmail() {}
 
-    public void sendNotification(String address) {
+    public void sendNotification(String recipient) {
 
         final String username = "cz2002ntustars@gmail.com"; // to be added
         final String password = "ntustars1234"; // to be added
@@ -35,7 +35,7 @@ public class SendEmail implements Notifications{
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("cz2002ntustars@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(address)); // to be added an email addr
+                    InternetAddress.parse(recipient)); // to be added an email addr
             message.setSubject("Testing Subject");
             message.setText("Dear Mail Crawler,"
                     + "\n\n No spam to my email, please!");
