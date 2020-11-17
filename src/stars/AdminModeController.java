@@ -125,17 +125,17 @@ public class AdminModeController {
             switch (ch) {
                 case 'E':
                     recipient = email;
-                    choice = "sendEmail";
+                    choice = "SendEmail";
                     break;
                 case 'T':
                     System.out.println("Enter the student's telegram number");
                     recipient = sc.nextLine().trim();
-                    choice = "sendTele";
+                    choice = "SendTele";
                     break;
                 case 'W':
                     System.out.println("Enter the student's whatsapp number");
                     recipient = sc.nextLine().trim();
-                    choice = "sendWhatsapp";
+                    choice = "SendWhatsapp";
                     break;
                 default:
                     System.out.println("Incorrect input. Try again.");
