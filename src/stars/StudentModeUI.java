@@ -12,7 +12,7 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
             int choice;
             Scanner sc = new Scanner(System.in);
             StudentModeController smc = new StudentModeController();
-
+            FileController fc=new FileController();
             do {
                 System.out.println("");
                 System.out.println("");
@@ -29,13 +29,44 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                 System.out.print("-------Please Enter your choice:");
                 choice = sc.nextInt();
                 Student student = (Student)user;
-
+                Course c;
+                Index i;
                 switch (choice) {
                     case 1:
-                        smc.addCourse();
+                        do {
+                            System.out.println("Enter the course code for the course you wish to add");
+                            String cCode = sc.nextLine().trim();
+                            c=fc.getCourseByCode(cCode);
+                            if(c==null)
+                                System.out.println("This course code does not exist");
+                        }while(c!=null);
+                       do {
+                           System.out.println("Enter the index number for the course you wish to add");
+                           int indexNum=sc.nextInt();
+                           i= fc.getIndexByID(indexNum);
+                           if(i==null)
+                               System.out.println("This index number does not exist");
+                       }while(i!=null);
+
+
+                        smc.addCourse(student,student.getRegCourses(),c,i);
                         break;
                     case 2:
-                        smc.dropCourse();
+                        do {
+                            System.out.println("Enter the course code for the course you wish to add");
+                            String cCode = sc.nextLine().trim();
+                            c=fc.getCourseByCode(cCode);
+                            if(c==null)
+                                System.out.println("This course code does not exist");
+                        }while(c!=null);
+                        do {
+                            System.out.println("Enter the index number for the course you wish to add");
+                            int indexNum=sc.nextInt();
+                            i= fc.getIndexByID(indexNum);
+                            if(i==null)
+                                System.out.println("This index number does not exist");
+                        }while(i!=null);
+                        smc.dropCourse(student, c,i);
                         break;
                     case 3:
                         smc.printRegisteredCourses(student);
@@ -49,7 +80,7 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                         smc.changeIndexNumber();
                         break;
                     case 6:
-                        smc.swapIndexnumber();
+                        smc.swapIndexNumber();
                         break;
                     case 7:
                         School school=student.getSchool();
