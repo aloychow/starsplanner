@@ -11,10 +11,12 @@ public class FileController {
     private static final String adminFileLoc= "./source/Admin.dat";
     private static final String studentFileLoc = "./source/Student.dat";
     private static final String schoolFileLoc = "./source/School.dat";
+    private static final String courseFileLoc="./source/Course.dat";
 
     private static ArrayList<Admin> adminList = new ArrayList<Admin>();
     private static ArrayList<Student> studentList = new ArrayList<Student>();
     private static ArrayList<School> schoolList = new ArrayList<School>();
+    private static ArrayList<Course> courseList=new ArrayList<Course>();
     private static User currentUser;
 
     public ArrayList<Admin> getAdminList() {
@@ -27,6 +29,10 @@ public class FileController {
     public ArrayList<School> getSchoolList() {
 
         return schoolList;
+    }
+    public ArrayList<Course> getCourseList() {
+
+        return courseList;
     }
     public User getCurrentUser() {
         return currentUser;
@@ -62,6 +68,17 @@ public class FileController {
             FileOutputStream fos = new FileOutputStream(schoolFileLoc);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(schoolList);
+            oos.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void saveCourseList(){
+        try {
+            FileOutputStream fos = new FileOutputStream(courseFileLoc);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(courseList);
             oos.close();
             fos.close();
         } catch (IOException e) {
@@ -124,6 +141,24 @@ public class FileController {
             e.printStackTrace();
         }
     }
+    public void RetrieveCourses(){
+
+        try {
+            FileInputStream fis = new FileInputStream(courseFileLoc);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            courseList = (ArrayList) ois.readObject();
+            ois.close();
+            fis.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Sorry file does not exist");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Sorry class does not exist");
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     //function to get the Student object reference by username
     public Student getStudentByUsername(String userName)
@@ -167,7 +202,7 @@ public class FileController {
         }
         return null;
     }
-    public Course getCourseByCode(String cCode) {
+    /*public Course getCourseByCode(String cCode) {
     	for (int i=0;i<schoolList.size();i++) {
     		for (Course c : schoolList.get(i).getCourses()) {
 				if (c.getCourseCode() != null && c.getCourseCode().equals(cCode)) {
@@ -177,8 +212,16 @@ public class FileController {
     		}
         }
         return null;
+    }*/
+    public Course getCourseByCode(String cCode)
+    {
+        for(int i=0;i<courseList.size();i++)
+        {
+            if(courseList.get(i).getCourseCode()==cCode)
+                return courseList.get(i);
+        }
+        return null;
     }
-
     public void populate(){
         // write to serialized file - update/insert/delete
         // example - add one more Admin
