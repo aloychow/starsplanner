@@ -11,9 +11,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendEmail implements Notifications{
+    /**
+     *
+     * default constructor
+     */
     public SendEmail() {}
 
-    public void sendNotification(String recipient) {
+    /**
+     * Send email notification to student to notify him/her of having gotten a position in a particular index for a course.
+     * @param recipient
+     * @param name
+     * @param indexNum
+     * @param courseCode
+     */
+    public void sendNotification(String recipient, String name, int indexNum, String courseCode) {
 
         final String username = "cz2002ntustars@gmail.com"; // to be added
         final String password = "ntustars1234"; // to be added
@@ -36,9 +47,9 @@ public class SendEmail implements Notifications{
             message.setFrom(new InternetAddress("cz2002ntustars@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(recipient)); // to be added an email addr
-            message.setSubject("Testing Subject");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n No spam to my email, please!");
+            message.setSubject("Successful Registration for " + courseCode);
+            message.setText("Dear "+ name + ","
+                    + "\n\n You have successfully registered for " + indexNum + " for " + courseCode);
 
             Transport.send(message);
 

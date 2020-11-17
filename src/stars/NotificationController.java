@@ -2,14 +2,26 @@ package stars;
 import java.util.HashMap;
 
 public class NotificationController {
-    public NotificationController() {}
+    /**
+     * default constructor
+     */
+    public NotificationController() {
+    }
 
-    public void notify(Student student) {
+    /**
+     * Send notification to next student in the waitlist based on his/her prefer communication method.
+     *
+     * @param student
+     */
+    public void notify(Student student, Index index) {
         NotificationFactory notifType = new NotificationFactory();
         HashMap<String, String> choice = student.getNotificationType();
         String keyMethod = choice.keySet().stream().findFirst().get();
         String recipient = choice.get(keyMethod);
         Notifications preferredNotifMethod = notifType.getNotifObj(keyMethod);
-        preferredNotifMethod.sendNotification(recipient);
+        String name = student.getName();
+        int indexNum = index.getIndexNum();
+        String courseCode = index.getCourse().getCourseCode();
+        preferredNotifMethod.sendNotification(recipient, name, indexNum, courseCode);
     }
 }
