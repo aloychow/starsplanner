@@ -3,7 +3,7 @@ import java.util.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 public class LoginController {
-    private static final String SALT= "STARWARS";
+
     private User user;
     FileController fc=new FileController();
     public boolean validateLogin(String userName, String enteredPassword, String typeOfUser)
