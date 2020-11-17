@@ -43,6 +43,7 @@ public class Student extends User implements Serializable{
         this.nationality = nationality;
         this.year = year;
         this.school = school;
+        this.numberOfAUs=0;
         notificationType.put(choice,recipient);
     }
     public String getName() {
