@@ -208,18 +208,6 @@ public class FileController {
     // get a specific index from the list of schools
 
 
-    public Index findIndexFromSchools(int index){
-        Index ix = null ;
-        for (int s=0; s<schoolList.size();s++){
-            for (int c=0; c<schoolList.get(s).getCourses().size();c++){
-                for (int i=0; i<schoolList.get(s).getCourses().get(c).getIndex().size();i++){
-                    if (schoolList.get(s).getCourses().get(c).getIndex().get(i).getIndexNum()==index){
-                        ix = schoolList.get(s).getCourses().get(c).getIndex().get(i);
-                    }
-                }
-            }
-        }
-        return ix;
-    }
+
 
 }

@@ -6,10 +6,11 @@ import java.util.Scanner;
 public class StudentModeController {
     Scanner sc=new Scanner(System.in);
     FileController fc=new FileController();
-    public void addCourse() {
+    public void addCourse()
+    {
 
     }
-    public void dropCourse()
+    public void deleteCourse()
     {
 
     }
@@ -34,7 +35,7 @@ public class StudentModeController {
 
     public void checkVacanciesAvailable(int index) {
         //TODO
-        Index indObj = fc.findIndexFromSchools(index);
+        Index indObj = fc.getIndexByID(index);
                 if(indObj!=null){
                     System.out.println("Number Of Vacancies available" + indObj.getVacancies() + "outOf" + indObj.getTotalSlots());
                 }

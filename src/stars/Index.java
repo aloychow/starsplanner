@@ -102,4 +102,38 @@ public class Index implements Serializable {
 
     }
 
+    public void allocateVacancies(Course course, Index index) {
+
+        Student student;
+        Queue<Student> waitList = index.getWaitList();
+        int vacancy;
+
+        for (vacancy = index.getVacancies(); vacancy > 0; vacancy--) {
+            student = waitList.poll();
+
+            if (student != null) {
+
+                for(RegisteredCourse registeredCourse : student.getRegCourses()) {
+                    if(registeredCourse.getRegIndex().getCourse().equals(course)) {
+                        if (student.getNumberOfAUs() + course.getTotalAUs() > 21) {
+                            student.removeRegCourses(registeredCourse);
+                            index.regList.remove(registeredCourse);
+                            vacancy++;
+                        } else {
+                            student.setNumberOfAUs(student.getNumberOfAUs() + course.getTotalAUs());
+                            registeredCourse.setRegStatus("Registered");
+                            // set timetable
+                            //
+                        }
+                    }
+                    //set new timetable schedule
+                }
+            } else {
+                setVacancies(vacancy);
+                break;
+            }
+        }
+        setVacancies(vacancy);
+    }
+
 }
