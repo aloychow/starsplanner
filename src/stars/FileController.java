@@ -202,7 +202,7 @@ public class FileController {
         }
         return null;
     }
-    /*public Course getCourseByCode(String cCode) {
+    public Course getCourseByCode(String cCode) {
     	for (int i=0;i<schoolList.size();i++) {
     		for (Course c : schoolList.get(i).getCourses()) {
 				if (c.getCourseCode() != null && c.getCourseCode().equals(cCode)) {
@@ -212,8 +212,8 @@ public class FileController {
     		}
         }
         return null;
-    }*/
-    public Course getCourseByCode(String cCode)
+    }
+    /*public Course getCourseByCode(String cCode)
     {
         for(int i=0;i<courseList.size();i++)
         {
@@ -221,7 +221,7 @@ public class FileController {
                 return courseList.get(i);
         }
         return null;
-    }
+    }*/
     public void populate(){
         // write to serialized file - update/insert/delete
         // example - add one more Admin
