@@ -16,7 +16,7 @@ private static String typeOfUser;
         LoginController login = new LoginController();
 
 
-        System.out.print("Enter your email: ");
+        System.out.print("Enter your username: ");
         enteredUsername= sc.next();
         System.out.print("Enter your password: ");
         enteredPassword = sc.next();
@@ -24,7 +24,7 @@ private static String typeOfUser;
         typeOfUser = sc.next();
         while (!login.validateLogin(enteredUsername, enteredPassword, typeOfUser)) {
 
-            System.out.print("Enter your email: ");
+            System.out.print("Enter your username: ");
             enteredUsername = sc.next();
             System.out.print("Enter your password: ");
             enteredPassword = sc.next();
