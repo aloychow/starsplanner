@@ -62,7 +62,7 @@ public class AdminModeController {
            {
                System.out.println("Error. You entered an invalid email");
            }
-       }while(validEmail!=false);
+       }while(validEmail!=true);
        recipient=email;
 
 
