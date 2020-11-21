@@ -85,7 +85,7 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                         System.out.println("Program terminating Ö.");
                         break;
                     default:
-                        System.out.println("Error!");
+                        System.out.println("Error! Please choose a valid option");
                         break;
                 }
             } while (choice != 9);
