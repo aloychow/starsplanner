@@ -1,6 +1,7 @@
 package stars;
 import java.util.*;
-
+import de.zabuza.grawlox.*;
+import java.io.*;
 public class StudentModeController {
     Scanner sc=new Scanner(System.in);
     FileController fc=new FileController();
@@ -207,16 +208,20 @@ public class StudentModeController {
             }
         } while(true);
     }
-
-    public void addReview(Student student) {
+private String filterReview(String input) throws IOException {
+Grawlox grawlox = Grawlox.createFromDefault();
+return grawlox.filter(input);
+ }
+    public void addReview(Student student) throws IOException{
         //print all the courses(previously taken courses) and get course choice to add review to
         Course c = reviewCourseSelection(student);
         System.out.println("Enter your review below:");
         String r = sc.next();
+         r = filterReview(r);
         boolean rec = getRec();
         Review rev = new Review(r, rec, student, c);
     }
-    public void editReview(Student student) {
+    public void editReview(Student student) throws IOException {
         Course c = reviewCourseSelection(student);
         Review rev = reviewSelection(student);
         System.out.println("1. Change review.");
@@ -231,6 +236,7 @@ public class StudentModeController {
                         flag = false;
                         System.out.println("Enter your edited review below:");
                         String r = sc.next();
+                        r = filterReview(r);
                         rev.setReview(r);
                         break;
                     case 2:

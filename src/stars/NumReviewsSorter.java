@@ -10,6 +10,6 @@ public class NumReviewsSorter implements Comparator<Course> {
      */
     @Override
     public int compare(Course c1, Course c2) {
-        return Double.compare(c2.getTotalReviews(), c1.getTotalReviews());
+        return c2.getTotalReviews() -c1.getTotalReviews() ;
     }
 }

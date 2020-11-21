@@ -11,6 +11,9 @@ public class PercRecommendedSorter implements Comparator<Course> {
      */
 
     public int compare(Course c1, Course c2) {
-        return Double.compare(c2.getPercRecommended(),c1.getPercRecommended());
+        double d = c2.getPercRecommended() - c1.getPercRecommended();
+        if (d >0) {return 1;}
+        else if (d<0) {return -1;}
+        else {return 0;}
     }
 }
