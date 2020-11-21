@@ -208,20 +208,26 @@ public class StudentModeController {
             }
         } while(true);
     }
-private String filterReview(String input) throws IOException {
-Grawlox grawlox = Grawlox.createFromDefault();
-return grawlox.filter(input);
- }
-    public void addReview(Student student) throws IOException{
+    private String filterReview(String input){
+        try{
+            Grawlox grawlox = Grawlox.createFromDefault();
+            return grawlox.filter(input);
+        } catch (IOException e) {
+            System.out.println("Invalid inout");
+            return null;
+        }
+
+    }
+    public void addReview(Student student){
         //print all the courses(previously taken courses) and get course choice to add review to
         Course c = reviewCourseSelection(student);
         System.out.println("Enter your review below:");
         String r = sc.next();
-         r = filterReview(r);
+        r = filterReview(r);
         boolean rec = getRec();
         Review rev = new Review(r, rec, student, c);
     }
-    public void editReview(Student student) throws IOException {
+    public void editReview(Student student) {
         Course c = reviewCourseSelection(student);
         Review rev = reviewSelection(student);
         System.out.println("1. Change review.");
@@ -255,6 +261,7 @@ return grawlox.filter(input);
             }
         } while(flag);
     }
+
     public void deleteReview(Student student) {
         Course c = reviewCourseSelection(student);
         Review rev = reviewSelection(student);
