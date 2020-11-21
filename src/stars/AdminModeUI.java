@@ -26,13 +26,14 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                 System.out.println("--------------------------------------------------------");
                 System.out.println("1: Edit Student Access Period");
                 System.out.println("2: Add Student");
-                System.out.println("3: Add Course");
-                System.out.println("4: Update Course");
-                System.out.println("5: Remove Course");
-                System.out.println("6: Check Available Slots");
-                System.out.println("7: Print Student List by Index");
-                System.out.println("8: Print Student List by Course");
-                System.out.println("9: Quit");
+                System.out.println("3: Remove Student");
+                System.out.println("4: Add Course");
+                System.out.println("5: Update Course");
+                System.out.println("6: Remove Course");
+                System.out.println("7: Check Available Slots");
+                System.out.println("8: Print Student List by Index");
+                System.out.println("9: Print Student List by Course");
+                System.out.println("10: Quit");
                 System.out.print("-------Please Enter your choice:");
                 choice = sc.nextInt();
 
@@ -66,29 +67,34 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                         amc.addStudent();
                         break;
                     case 3:
-                        amc.addCourse();
+                        amc.removeStudent();
                         break;
                     case 4:
-                        amc.updateCourse();
+                        amc.addCourse();
+                        break;
                     case 5:
-                        amc.removeCourse();
+                        amc.updateCourse();
+                        break;
                     case 6:
-                        amc.checkAvailableSlot();
+                        amc.removeCourse();
                         break;
                     case 7:
-                        amc.printStulistByIndex();
+                        amc.checkAvailableSlot();
                         break;
                     case 8:
-                        amc.printStulistByCourse();
+                        amc.printStulistByIndex();
                         break;
                     case 9:
+                        amc.printStulistByCourse();
+                        break;
+                    case 10:
                         System.out.println("Program terminating Ö.");
                         break;
                     default:
                         System.out.println("Error! Please choose a valid option");
                         break;
                 }
-            } while (choice != 9);
+            } while (choice !=10);
         }
         else
             {
