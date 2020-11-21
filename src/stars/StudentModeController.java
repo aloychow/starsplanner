@@ -1,7 +1,5 @@
 package stars;
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class StudentModeController {
     Scanner sc=new Scanner(System.in);
@@ -31,6 +29,10 @@ public class StudentModeController {
 
 
             //Check if clash with current timetable
+            ArrayList<StudyGroup> s = student.getStudyGroups();
+            if (checkClash(index, s)) {
+                return;
+            }
 
             String status;
             //Get Vacancy
@@ -304,6 +306,120 @@ public class StudentModeController {
             }
         } while(flag);
     }
+    /*
+       Prints the timetable for a student.
+        */
+    public void getTimetable(ArrayList<StudyGroup> studyGroups) {
 
+        String time_1, time_2;
+
+        Collections.sort(studyGroups, Comparator
+                .comparing(StudyGroup::getDayOfWeek)
+                .thenComparing(StudyGroup::getStartTime));
+
+        Map<Integer, String> week = new HashMap<>();
+        week.put(1, "Monday");
+        week.put(2, "Tuesday");
+        week.put(3, "Wednesday");
+        week.put(4, "Thursday");
+        week.put(5, "Friday");
+        week.put(6, "Saturday");
+        week.put(7, "Sunday");
+
+        for (Map.Entry<Integer, String> day : week.entrySet()) {
+
+            System.out.printf("%d\n",day.getValue());
+
+            for(StudyGroup studyGroup : studyGroups) {
+                if (studyGroup.getDayOfWeek() == day.getKey()) {
+
+                    time_1 = String.valueOf(studyGroup.getStartTime());
+                    time_2 = String.valueOf(studyGroup.getEndTime());
+
+                    while (time_1.length() < 4) {
+                        time_1 = "0" + time_1;
+                    }
+
+                    while (time_2.length() < 4) {
+                        time_2 = "0" + time_2;
+                    }
+
+                    System.out.printf("%s - %s: ", time_1, time_2);
+                    System.out.printf("%s (%d)", studyGroup.getIndex().getCourse().getCourseCode(), studyGroup.getIndex().getIndexNum());
+
+                    //prints week type if not weekly (i.e. biweekly)
+                    if (studyGroup.getWeekType() != "Weekly") {
+                        System.out.printf("\t %s", studyGroup.getWeekType());
+                    }
+                    System.out.println("");
+                }
+            }
+
+        }
+
+    }
+    /*
+    Check for clashes in timetable: Compares whether there exists an overlapping range and prints all clashes. Returns true if there is clash
+     */
+    private boolean checkClash(Index index, ArrayList<StudyGroup> studyGroups) {
+
+        String time_1, time_2, time_3, time_4;
+        boolean clash = false;
+        ArrayList<String> day = new ArrayList<>();
+        day.add(1,"Monday");
+        day.add(2,"Tuesday");
+        day.add(3,"Wednesday");
+        day.add(4,"Thursday");
+        day.add(5,"Friday");
+        day.add(6,"Saturday");
+        day.add(7,"Sunday");
+
+
+        for (StudyGroup studyGroup : index.getStudyGroup()) {
+            for (StudyGroup studyGroup2 : studyGroups) {
+                if (studyGroup.getDayOfWeek() == studyGroup2.getDayOfWeek()) {
+                    if (studyGroup.getStartTime() <= studyGroup2.getEndTime()
+                            && studyGroup.getEndTime() <= studyGroup2.getStartTime()) {
+
+                        time_1 = String.valueOf(studyGroup.getStartTime());
+                        time_2 = String.valueOf(studyGroup.getEndTime());
+                        time_3 = String.valueOf(studyGroup2.getEndTime());
+                        time_4 = String.valueOf(studyGroup2.getEndTime());
+
+                        while (time_1.length() < 4) {
+                            time_1 = "0" + time_1;
+                        }
+
+                        while (time_2.length() < 4) {
+                            time_2 = "0" + time_2;
+                        }
+
+                        while (time_3.length() < 4) {
+                            time_1 = "0" + time_1;
+                        }
+
+                        while (time_4.length() < 4) {
+                            time_2 = "0" + time_2;
+                        }
+
+                        System.out.printf("The index you are trying to add %d (%s) clashes with index %d (%s)\n",
+                                index.getIndexNum(), index.getCourse().getName(), studyGroup2.getIndex().getIndexNum(), studyGroup2.getIndex().getCourse().getName());
+
+                        System.out.printf("%d\n", day.get(studyGroup.getDayOfWeek()));
+
+                        System.out.printf("Index %d time: %d - %d\n", time_1, time_2);
+                        System.out.printf("Index %d time: %d - %d\n\n", time_3, time_4);
+
+                        clash = true;
+                    }
+                }
+            }
+        }
+        if (clash == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

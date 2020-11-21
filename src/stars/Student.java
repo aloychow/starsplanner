@@ -152,4 +152,19 @@ public class Student extends User implements Serializable{
     public void setPastCourses(ArrayList<Course> pastCourses) {
         this.pastCourses = pastCourses;
     }
+    /*
+    Get the study groups for all courses for a student. (E.g. lectures, tutorials, etc)
+     */
+    public ArrayList<StudyGroup> getStudyGroups() {
+
+        ArrayList<StudyGroup> studyGroups = new ArrayList<>();
+
+        for (RegisteredCourse regCourse : this.regCourses) {
+            for (StudyGroup studyGroup : regCourse.getRegIndex().getStudyGroup()) {
+                studyGroups.add(studyGroup);
+            };
+        }
+        return studyGroups;
+    }
+
 }
