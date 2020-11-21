@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.util.*;
 
 public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
     public void showMenu(User user) {
@@ -27,10 +27,12 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                 System.out.println("1: Edit Student Access Period");
                 System.out.println("2: Add Student");
                 System.out.println("3: Add Course");
-                System.out.println("4: Check Available Slots");
-                System.out.println("5: Print Student List by Index");
-                System.out.println("6: Print Student List by Course");
-                System.out.println("7: Quit");
+                System.out.println("4: Update Course");
+                System.out.println("5: Remove Course");
+                System.out.println("6: Check Available Slots");
+                System.out.println("7: Print Student List by Index");
+                System.out.println("8: Print Student List by Course");
+                System.out.println("9: Quit");
                 System.out.print("-------Please Enter your choice:");
                 choice = sc.nextInt();
 
@@ -67,15 +69,19 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                         amc.addCourse();
                         break;
                     case 4:
+                        amc.updateCourse();
+                    case 5:
+                        amc.removeCourse();
+                    case 6:
                         amc.checkAvailableSlot();
                         break;
-                    case 5:
-                        amc.printStulisByIndex();
-                        break;
-                    case 6:
-                        amc.printStulisByCourse();
-                        break;
                     case 7:
+                        amc.printStulistByIndex();
+                        break;
+                    case 8:
+                        amc.printStulistByCourse();
+                        break;
+                    case 9:
                         System.out.println("Program terminating Ö.");
                         break;
                     default:
@@ -93,6 +99,16 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
         {
                 System.out.println(errorMsg);
         }
+    /**
+     * Print our arraylist of student arrays.
+     * @param stuList
+     */
+    private void displayStuList(ArrayList<String[]> stuList){
+        for(int i = 0; i < stuList.size(); i++) {
+            String [] array = stuList.get(i);
+            System.out.println(Arrays.toString(array));
+        }
+    }
 
 
 }

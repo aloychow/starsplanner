@@ -133,5 +133,177 @@ public class StudentModeController {
         System.out.println("The registration access period is::  "+regStartDate+" to "+regEndDate);
 
     }
+    private Review reviewSelection(Student student) {
+        int reviewSelection;
+        boolean flag = true;
+
+        ArrayList<Review> reviews = student.getMyReviews();
+
+        do {
+            // Get user's selection of courses
+            System.out.println("Select the Review you would like to make changes to:");
+            for(int i = 0; i < reviews.size(); i++) {
+                System.out.println(i+1 + ". " + reviews.get(i));
+            }
+            reviewSelection = sc.nextInt();
+
+            if (reviewSelection > 0 && reviewSelection < reviews.size() + 1) {
+                Review review = reviews.get(reviewSelection - 1);
+                flag = false;
+                return review;
+            }
+            else {
+                System.out.println("Invalid selection.");
+            }
+        } while(flag);
+        return null;
+    }
+
+    private Course reviewCourseSelection(Student student) {
+        int courseSelection;
+        boolean flag = true;
+
+        ArrayList<Course> courses = student.getPastCourses();
+
+        do {
+            // Get user's selection of courses
+            System.out.println("Select the course you would like to add/edit/remove review for:");
+            for(int i = 0; i < courses.size(); i++) {
+                System.out.println(i+1 + ". " + courses.get(i));
+            }
+            courseSelection = sc.nextInt();
+
+            if (courseSelection > 0 && courseSelection < courses.size() + 1) {
+                Course course = courses.get(courseSelection - 1);
+                flag = false;
+                return course;
+            }
+            else {
+                System.out.println("Invalid selection.");
+            }
+        } while(flag);
+        return null;
+    }
+    private boolean getRec() {
+        do {
+            System.out.println("Would you recommend the course? (1/0)");
+            if (sc.hasNextInt()) {
+                int choice = sc.nextInt();
+                switch(choice) {
+                    case 0:
+                        return false;
+                    case 1:
+                        return true;
+
+                    default:
+                        System.out.println("Invalid selection.");
+                        break;
+                }
+            }else {
+                String input = sc.next();
+                System.out.println("Invalid selection.");
+            }
+        } while(true);
+    }
+
+    public void addReview(Student student) {
+        //print all the courses(previously taken courses) and get course choice to add review to
+        Course c = reviewCourseSelection(student);
+        System.out.println("Enter your review below:");
+        String r = sc.next();
+        boolean rec = getRec();
+        Review rev = new Review(r, rec, student, c);
+    }
+    public void editReview(Student student) {
+        Course c = reviewCourseSelection(student);
+        Review rev = reviewSelection(student);
+        System.out.println("1. Change review.");
+        System.out.println("2. Ammend recommended status.");
+        boolean flag = true;
+        do {
+            System.out.println("Input a choice (1/2)");
+            if (sc.hasNextInt()) {
+                int choice = sc.nextInt();
+                switch(choice) {
+                    case 1:
+                        flag = false;
+                        System.out.println("Enter your edited review below:");
+                        String r = sc.next();
+                        rev.setReview(r);
+                        break;
+                    case 2:
+                        flag = false;
+                        boolean rec = getRec();
+                        rev.setRecommended(rec);
+                        break;
+
+                    default:
+                        System.out.println("Invalid selection.");
+                        break;
+                }
+            }else {
+                String input = sc.next();
+                System.out.println("Invalid selection.");
+            }
+        } while(flag);
+    }
+    public void deleteReview(Student student) {
+        Course c = reviewCourseSelection(student);
+        Review rev = reviewSelection(student);
+        student.deleteReview(rev);
+        c.deleteReview(rev);
+
+    }
+    /**
+     * Allows user to sort courses by number of reviews or percentage recommended and make selection.
+     * The, display the reviews.
+     */
+    public void displayReviews() {
+        int select; int courseSelection;
+        boolean flag = true;
+        DisplayDataController dd = new DisplayDataController();
+        Scanner sc = new Scanner(System.in);
+        School sch = dd.schSelection();
+        ArrayList<Course> schCourses = sch.getCourses();
+        do {
+            System.out.println("Select the sorting method");
+            System.out.println("1. Sort by number of reviews");
+            System.out.println("2. Sort by percentage recommended");
+            select = sc.nextInt();
+
+            switch (select) {
+                case 1:
+                    schCourses.sort(new NumReviewsSorter());
+                    flag = false;
+                    break;
+                case 2:
+                    schCourses.sort(new PercRecommendedSorter());
+                    flag= false;
+                    break;
+                default:
+                    System.out.println("Invalid selection.");
+            }
+        } while(flag);
+        do {
+            // Get user's selection of courses
+            System.out.println("Select the course:");
+            for(int i = 0; i < schCourses.size(); i++) {
+                System.out.println(i+1 + ". " + schCourses.get(i));
+            }
+            courseSelection = sc.nextInt();
+
+            if (courseSelection > 0 && courseSelection < schCourses.size() + 1) {
+                Course course = schCourses.get(courseSelection - 1);
+                ArrayList<Review> reviewList = course.getReviews();
+                for(int i = 0; i< reviewList.size();i++) {
+                    System.out.println(i+1 + "Review: " + reviewList.get(i).getReview());
+                }
+            }
+            else {
+                System.out.println("Invalid selection.");
+            }
+        } while(flag);
+    }
+
 
 }

@@ -13,6 +13,8 @@ public class Student extends User implements Serializable{
     private ArrayList<RegisteredCourse> regCourses;
     private School school;
     private HashMap<String, String> notificationType=new HashMap<String, String>();
+    private ArrayList<Course> pastCourses;// new
+    private ArrayList<Review> myReviews = new ArrayList<Review>();//new
     public static final  int MAX_AUs = 22;
     public Student()
     {
@@ -125,5 +127,29 @@ public class Student extends User implements Serializable{
 
     public void setNotificationType(HashMap<String, String> notificationType) {
         this.notificationType = notificationType;
+    }
+    public ArrayList<Review> getMyReviews() {
+        return myReviews;
+    }
+
+    public void addMyReview(Review review) {
+        this.myReviews.add(review);
+    }
+    public void deleteReview(Review review) {
+        for (int i = 0 ; i < this.myReviews.size(); i ++){
+
+            if(this.myReviews.get(i).equals(review)){
+                this.myReviews.remove(i);
+                break;
+            }
+        }
+    }
+
+    public ArrayList<Course> getPastCourses() {
+        return pastCourses;
+    }
+
+    public void setPastCourses(ArrayList<Course> pastCourses) {
+        this.pastCourses = pastCourses;
     }
 }

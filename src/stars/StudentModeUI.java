@@ -25,7 +25,11 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                 System.out.println("5: Change Index Number");
                 System.out.println("6: Swap Index Number");
                 System.out.println("7: Check Access Period");
-                System.out.println("8: Quit");
+                System.out.println("8: Add Review");//new
+                System.out.println("9: Edit Review");//new
+                System.out.println("10: Delete Review");//new
+                System.out.println("11: View Reviews");//new
+                System.out.println("12: Quit");//new
                 System.out.print("-------Please Enter your choice:");
                 choice = sc.nextInt();
                 Student student = (Student)user;
@@ -86,14 +90,26 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                         School school=student.getSchool();
                         smc.checkAccessPeriod(school);
                         break;
-                    case 8:
+                    case 8:////new
+                        smc.addReview(student);
+                        break;
+                    case 9:////new
+                        smc.editReview(student);
+                        break;
+                    case 10://new
+                        smc.deleteReview(student);
+                        break;
+                    case 11://new
+                        smc.displayReviews();
+                        break;
+                    case 12://updated
                         System.out.println("Program terminating Ö.");
                         break;
                     default:
                         System.out.println("Error!");
                         break;
                 }
-            } while (choice != 8);
+            } while (choice != 12);
         }
         else
         {

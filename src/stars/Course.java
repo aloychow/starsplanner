@@ -5,11 +5,14 @@ public class Course implements Serializable {
     private String name;
     private String courseCode;
     private School school;
-    private ArrayList<Index> index;
+    private ArrayList<Index> index = new ArrayList<Index>();
     private CourseType courseType;
     private int vacancy;
     private int totalAUs;
     private int nLectures;
+    private double percRecommended;//new
+    private int totalReviews;//new
+    private ArrayList<Review> reviews = new ArrayList<Review>();//new
     public Course()
     {
 
@@ -24,6 +27,7 @@ public class Course implements Serializable {
         this.vacancy=vacancy;
         this.totalAUs=totalAUs;
         this.nLectures=nLectures;
+
     }
     public Course(String name, String courseCode, School school, CourseType courseType, int totalAUs, int nLectures)
     {	//need to do object creation for ArrayList index here maybe
@@ -35,6 +39,7 @@ public class Course implements Serializable {
         this.vacancy=0;
         this.totalAUs=totalAUs;
         this.nLectures = nLectures;
+
     }
     public void setName(String name)
     {
@@ -116,6 +121,44 @@ public class Course implements Serializable {
     {
         return this.index;
     }
+    public double getPercRecommended() {
+        return percRecommended;
+    }
+    public void setPercRecommended(double percRecommended) {
+        this.percRecommended = percRecommended;
+    }
+    public int getTotalReviews() {
+        return totalReviews;
+    }
+    public void setTotalReviews(int totalReviews) {
+        this.totalReviews = totalReviews;
+    }
+    public void deleteReview(Review rev) {
+        for (int i = 0 ; i < this.reviews.size(); i ++){
 
+            if(this.reviews.get(i).equals(rev)){
+                this.reviews.remove(i);
+                double positive = this.percRecommended * this.totalReviews;
+                if (rev.isRecommended()) {positive = positive - 1;}
+                this.totalReviews = this.totalReviews - 1;
+                this.percRecommended = positive/(double)this.totalReviews;
+                System.out.println("Review successfully removed");
+                break;
+            }
+        }
+    }
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
+    }
+    public void addReview(Review r) {
+        this.reviews.add(r);
+        double positive = this.percRecommended * this.totalReviews;
+        if (r.isRecommended()) {positive = positive + 1;}
+        this.totalReviews = this.totalReviews + 1;
+        this.percRecommended = positive/(double)this.totalReviews;
+    }
 
 }

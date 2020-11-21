@@ -3,8 +3,8 @@ import java.io.Serializable;
 public class StudyGroup implements Serializable{
 
     private String venue;
-    private String startTime;
-    private String endTime;
+    private int startTime;
+    private int endTime;
     private int dayOfWeek;
     private String weekType;
     private Index index;
@@ -13,7 +13,7 @@ public class StudyGroup implements Serializable{
     {
 
     }
-    public StudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType, LessonType lessonType,Index index) {
+    public StudyGroup(String venue, int startTime, int endTime, int dayOfWeek, String weekType, LessonType lessonType,Index index) {
         this.venue = venue;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -28,16 +28,16 @@ public class StudyGroup implements Serializable{
     public void setVenue(String venue) {
         this.venue = venue;
     }
-    public String getStartTime() {
+    public int getStartTime() {
         return startTime;
     }
-    public void setStartTime(String startTime) {
+    public void setStartTime(int startTime) {
         this.startTime = startTime;
     }
-    public String getEndTime() {
+    public int getEndTime() {
         return endTime;
     }
-    public void setEndTime(String endTime) {
+    public void setEndTime(int endTime) {
         this.endTime = endTime;
     }
     public int getDayOfWeek() {

@@ -106,7 +106,7 @@ public class Index implements Serializable {
     }
 
 
-    public void addStudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType,LessonType lessonType) {
+    public void addStudyGroup(String venue, int startTime, int endTime, int dayOfWeek, String weekType,LessonType lessonType) {
         StudyGroup sg = new StudyGroup(venue,startTime,endTime,dayOfWeek,weekType,lessonType, this);
         this.studyGroup.add(sg);
 
