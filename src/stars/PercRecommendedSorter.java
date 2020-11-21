@@ -9,7 +9,7 @@ public class PercRecommendedSorter implements Comparator<Course> {
      * @param c2
      * @return int
      */
-    @Override
+
     public int compare(Course c1, Course c2) {
         return Double.compare(c2.getPercRecommended(),c1.getPercRecommended());
     }

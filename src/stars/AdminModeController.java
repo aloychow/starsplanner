@@ -1,7 +1,7 @@
 package stars;
 import java.util.*;
 import java.io.Console;
-public class AdminModeController {
+public class AdminModeController implements DisplayErrorMsgUI{
     Scanner sc = new Scanner(System.in);
     FileController fc = new FileController();
     DisplayDataController dd= new DisplayDataController();
@@ -506,19 +506,19 @@ public class AdminModeController {
                             stuList.add(stuDetails);
                         }
                         else {
-                            System.out.println("Error. No registration was made.");
+                            displayErrorMsg("Error. No registration was made.");
                         }
                     }
                 }
                 return stuList;
             }
             else {
-                System.out.println("There is no such index."); //maybe should setup NullPointerException
+                displayErrorMsg("There is no such index."); //maybe should setup NullPointerException
                 return null;
             }
         }
         else {
-            System.out.println("Error");
+            displayErrorMsg("Error");
             return null;
         }
     }
@@ -568,6 +568,9 @@ public class AdminModeController {
             return null;
         }
     }
-
+    public void displayErrorMsg(String s)
+    {   System.out.println("Error occurred");
+        System.out.println(s);
+    }
 
 }
