@@ -88,7 +88,7 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                         System.out.println("Error!");
                         break;
                 }
-            } while (choice != 7);
+            } while (choice != 9);
         }
         else
             {

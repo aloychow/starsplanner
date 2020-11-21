@@ -554,12 +554,12 @@ public class AdminModeController implements DisplayErrorMsgUI{
                     return stuList;
                 }
                 else {
-                    System.out.println("There is no such index."); //maybe should setup NullPointerException
+                    System.out.println("Error. No such index."); //maybe should setup NullPointerException
                     return null;
                 }
             }
             else {
-                System.out.println("Error.");
+                System.out.println("Error. No such course.");
                 return null;
             }
         }
